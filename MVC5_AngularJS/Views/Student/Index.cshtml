@@ -1,0 +1,22 @@
+﻿
+
+
+@section scripts
+{
+    <script src="~/Scripts/studentView/student.js"></script>
+    <script type="text/javascript">
+        var studentUrls = {
+            getStudents: '@Url.Action("StudentList","Student")',
+            createStudent: '@Url.Action("CreateStudent")',
+            updateStudent: '@Url.Action("UpdateStudent")',
+            deleteStudent:'@Url.Action("DeleteStudent")'
+        };
+
+        $(document).ready(function() {
+            LoadStudentTable();
+        });
+    </script>
+}
+
+
+<div id="studentContainer"></div>

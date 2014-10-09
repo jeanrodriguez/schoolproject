@@ -1,0 +1,22 @@
+﻿
+
+
+@section scripts
+{
+    <script src="~/Scripts/Event/eventIndexView.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var evenAdminUrls = {
+                getEvents: '@Url.Action("EventList","Event")',
+                createEvent: '@Url.Action("CreateEvent","Event")',
+                updateEvent: '@Url.Action("UpdateEvent","Event")',
+                deleteEvent:'@Url.Action("DeleteEvent","Event")'
+            };
+            //cargamos el jtable
+            LoadEventTable(evenAdminUrls);
+        });
+    </script>
+}
+
+<div id="eventIndexContainer"></div>

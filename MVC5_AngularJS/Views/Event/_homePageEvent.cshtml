@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<MVC5_AngularJS.Models.EventViewModel>
+
+
+<h1 class="section-heading text-highlight"><span class="line">Events</span></h1>
+<div class="section-content">
+    @foreach (var i in Model)
+    {
+        
+    <div class="event-item">
+        <p class="date-label">
+            <span class="month">@i.EventStartDate.Month</span>
+            <span class="date-number">@i.EventStartDate.Date.Day</span>
+        </p>
+        <div class="details">
+            <h2 class="title">@i.Name</h2>
+            <p class="time"><i class="fa fa-clock-o"></i>@i.EventStartDate.Hour - @i.EventEndDate.Hour</p>
+            <p class="location"><i class="fa fa-map-marker"></i>@i.Place</p>
+        </div><!--//details-->
+    </div><!--event-item-->
+    } 
+    <a class="read-more" href="@Url.Action("Index","Event")">All events<i class="fa fa-chevron-right"></i></a>
+</div><!--//section-content-->

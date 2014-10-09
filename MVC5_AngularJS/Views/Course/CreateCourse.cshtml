@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "CreateCourse";
+}
+
+@section scripts
+{
+ 
+<script src="~/Scripts/courseView/course.js"></script>
+    <script type="text/javascript">
+        var couseUrls = {
+            getCouses: '@Url.Action("CourseList", "Course")',
+            createCourse: '@Url.Action("CreateCourse","Course")',
+            updateCourse: '@Url.Action("UpdateCourse","Course")',
+            deleteCourse:'@Url.Action("DeleteCourse","Course")'
+        };
+
+        $(document).ready(function() {
+            cargarTableCourse();
+        });
+    </script> 
+}
+<div>
+    <div>
+        <div id="courseContainer"></div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+﻿@using System.Diagnostics
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Jtable/css")
+    @Styles.Render("~/bunbles/LibraryCss")
+    @*@Styles.Render("~/Content/css2")*@
+        @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+</head>
+<body class="home-page">
+    <div class="wrapper">
+        <header class="header">
+            @Html.Partial("_header")
+        </header>
+
+        <nav class="main-nav" role="navigation">
+           @Html.Partial("_navegation")
+        </nav>
+        <div class="content container">
+            @RenderBody()
+            <hr /> 
+            <footer class="footer"> 
+                    @Html.Partial("_footer") 
+            </footer>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bunbles/LibraryJS")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jtable")
+    @Scripts.Render("~/mainjs")
+    @*@Scripts.Render("~/bundles/bootrapjs")*@
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
