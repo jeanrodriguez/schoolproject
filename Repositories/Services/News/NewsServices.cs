@@ -11,7 +11,7 @@ namespace Repositories.Services
     {
        public static IEnumerable<News> GetRecentNewses(this GenericRepository<News> entity )
        {
-           var result = entity.Get().Take(5).OrderByDescending(a => a.CreationDate);
+           var result = entity.Get().Take(3).OrderByDescending(a => a.CreationDate);
            return result; 
        }
     }

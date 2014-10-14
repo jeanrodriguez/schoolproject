@@ -66,14 +66,14 @@ namespace Repositories
         {
             //entidad que vamos a eliminar
             TEntity entity = _dbSet.Find(id);
-             
-             //cambiamos el estado a inactivo
+
+            //cambiamos el estado a inactivo
             entity.Estado = EstadosRegistros.Registro.Inactivo;
             //actualizamos con el nuevo estadp
             Update(entity);
             //guardamos
             Context.SaveChanges();
-            
+
         }
 
         public virtual void Update(TEntity entity)
@@ -87,7 +87,25 @@ namespace Repositories
             Context.Entry(entity).State = EntityState.Modified;
             Context.SaveChanges();
         }
+        public virtual IQueryable<TEntity> GetAll(
+           Expression<Func<TEntity, bool>> filter = null,
+                                  string includeProperties = "")
+        {
+            IQueryable<TEntity> query = _dbSet;
 
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            foreach (var includeProperty in includeProperties.Split
+                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+            return query.Where(a => a.Estado == EstadosRegistros.Registro.Activo);
+
+        }
         public virtual IEnumerable<TEntity> GetAll()
         {
             IQueryable<TEntity> query = _dbSet;
@@ -96,7 +114,29 @@ namespace Repositories
             //throw new NotImplementedException();
         }
 
-        //public virtual IEnumerable<TEntity>GetRecentEvent 
+
+
+        public IQueryable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null,
+           Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+                                                                string includeProperties = "",
+                                                                int jtStartIndex = 0,
+                                                                int jtPageSize = 0,
+                                                                string jtSorting = null,
+                                                                bool orderDescending = false)
+        {
+            IQueryable<TEntity> query = GetAll(filter, includeProperties);
+
+
+            if (jtPageSize == 0)
+                jtPageSize = 10;
+
+            query.Where(a => a.Estado == EstadosRegistros.Registro.Activo)
+                 .ToList()
+                 .Take(jtPageSize);
+                               
+            return query.Skip(jtStartIndex).Take(jtPageSize);
+            //throw new NotImplementedException();
+        }
 
         public virtual IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
         {

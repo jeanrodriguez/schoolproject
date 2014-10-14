@@ -36,12 +36,31 @@ namespace MVC5_AngularJS.Controllers
             var events = _eventRepository.GetRecentEvent(); 
              Mapper.Map(events, eventViewModel);
             return PartialView("_homePageEvent", eventViewModel);
+        
         }
+
+        public ActionResult EventPageNews()
+        {
+            var events = _eventRepository.GetRecentEvent();
+
+            var eventViewModel = new List<EventViewModel>();
+
+            Mapper.Map(events, eventViewModel);
+
+            return PartialView("_eventPageNews",eventViewModel);
+        }
+
         //
         // GET: /Event/
         public ActionResult Index()
         {
-            return View();
+            var events = _eventRepository.GetAll();
+
+            var eventViewModel = new List<EventViewModel>();
+
+            Mapper.Map(events, eventViewModel);
+
+            return View(eventViewModel);
         }
 
         #region maintenance crud
@@ -51,7 +70,7 @@ namespace MVC5_AngularJS.Controllers
         }
 
         [HttpPost]
-        public JsonResult EventList()
+        public JsonResult EventList(int jtStartIndex = 0, int jtPageSize = 0, string jtSorting = null)
         {
             try
             {

@@ -1249,6 +1249,7 @@
     <Content Include="Scripts\jtable\jquery.jtable.bootstrap.js" />
     <Content Include="Views\Event\_homePageEvent.cshtml" />
     <Content Include="Views\News\HomePageNews.cshtml" />
+    <Content Include="Views\Event\_eventPageNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

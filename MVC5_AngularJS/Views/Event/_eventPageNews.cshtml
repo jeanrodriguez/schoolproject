@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MVC5_AngularJS.Models.EventViewModel>
+
+<div>
+    <h3 class="title">Upcoming Events</h3>
+    @foreach (var events in Model)
+    {
+        <article class="events-item row page-row">
+            <div class="date-label-wrapper col-md-3 col-sm-4 col-xs-4">
+                <p class="date-label">
+                    <span class="month">@events.EventStartDate.Month</span>
+                    <span class="date-number">@events.EventStartDate.Month</span>
+                </p>
+            </div><!--//date-label-wrapper-->
+            <div class="details col-md-9 col-sm-8 col-xs-8">
+                <h5 class="title">@events.Name</h5>
+                <p class="time text-muted">@events.EventStartDate.ToShortTimeString() - @events.EventEndDate.ToShortTimeString()<br>@events.Place</p>
+            </div><!--//details-->
+        </article>
+    }
+
+</div>
